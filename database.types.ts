@@ -328,6 +328,9 @@ export type Database = {
           placement: string | null
           user: string,
           notes: string | null
+          "user data": {
+            live_screen_name: string
+          }
         }
         Insert: {
           category?: string | null

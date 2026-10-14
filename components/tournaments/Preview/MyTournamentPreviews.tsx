@@ -124,7 +124,7 @@ export function MyTournamentPreviews (props: MyTournamentPreviewsProps) {
                 />
               ) : null
             )}
-          </div>
+          </div> 
         ) : (
           <ScrollArea className="h-[36rem]">
             <div className="flex flex-col gap-2">

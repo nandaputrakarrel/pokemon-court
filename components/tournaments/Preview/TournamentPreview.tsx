@@ -24,7 +24,7 @@ export default function TournamentPreview(props: TournamentPreviewProps) {
           <div className="grid grid-cols-two-sprite+3 items-center">
             <Sprite name={props.tournament.deck} hatType={props.hatType ?? props.tournament.hat_type ?? undefined} />
             <div className="text-left col-span-2">
-              <CardTitle className="dark:text-white">{props.tournament.name}</CardTitle>
+              <CardTitle className="dark:text-white">{props.tournament.name} - {props.tournament["user data"] ? props.tournament["user data"].live_screen_name : "N/A"}</CardTitle>
               <CardDescription>
                 {displayTournamentDate(props.tournament.date_from, props.tournament.date_to)}
               </CardDescription>

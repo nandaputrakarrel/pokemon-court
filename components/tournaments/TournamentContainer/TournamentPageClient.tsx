@@ -16,6 +16,7 @@ import { HISTORICAL_SWR_OPTIONS } from '@/lib/swr-options';
 
 type TournamentRow = Database['public']['Tables']['tournaments']['Row'];
 type RoundRow = Database['public']['Tables']['tournament rounds']['Row'];
+type UserRow = Database['public']['Tables']['user data']['Row'];
 
 const TABLES = {
   ptcg: { tournaments: 'tournaments', rounds: 'tournament rounds' },
@@ -56,7 +57,6 @@ export function TournamentPageClient({
         .select('*')
         .eq('id', tournamentId)
         .maybeSingle();
-        console.log('data :', JSON.stringify(data))
       return (data as TournamentRow | null) ?? null;
     },
     initialTournament !== undefined
@@ -64,7 +64,18 @@ export function TournamentPageClient({
       : HISTORICAL_SWR_OPTIONS
   );
 
-  console.log('tournament', tournament)
+  const { data: userData } = useSWR(
+    [tournament.user],
+    async () => {
+      const supabase = createClient();
+      const { data } = await supabase
+        .from('user data')
+        .select('*')
+        .eq('id', tournament.user)
+        .maybeSingle();
+      return (data as UserRow | null) ?? null;
+    }
+  );
 
   const { data: rounds, isLoading: roundsLoading } = useSWR(
     [tables.rounds, tournamentId],
@@ -94,6 +105,7 @@ export function TournamentPageClient({
     <TournamentContainerClient
       tournament={tournament}
       user={user}
+      userData={userData}
       rounds={rounds ?? []}
       config={config}
     />

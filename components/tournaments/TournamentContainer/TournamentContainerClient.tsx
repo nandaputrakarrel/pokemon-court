@@ -27,6 +27,7 @@ import { HatEditDialog } from "@/components/hats/HatEditDialog";
 interface TournamentContainerClientProps {
   tournament: Database['public']['Tables']['tournaments']['Row'];
   rounds: Database['public']['Tables']['tournament rounds']['Row'][];
+  userData: Database['public']['Tables']['user data']['Row'] | null | undefined;
   user: User | undefined | null;
   config: TournamentGameConfig;
 }
@@ -144,7 +145,7 @@ export const TournamentContainerClient = (props: TournamentContainerClientProps)
             <div className="flex flex-wrap items-start justify-between gap-2">
               <div className="flex flex-col min-w-0 flex-1">
                 <h1 className="scroll-m-20 text-2xl font-bold tracking-tight">
-                  {tournamentName}
+                  {tournamentName} - {props.userData ? props.userData.live_screen_name : "N/A"}
                 </h1>
                 <h3 className="text-sm text-muted-foreground">
                   {displayTournamentDate(props.tournament.date_from, props.tournament.date_to)}
