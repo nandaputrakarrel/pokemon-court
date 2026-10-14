@@ -12,6 +12,7 @@ import { Database } from "@/database.types";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { ImmediateMatchEndScenarios, MATCH_END_REASONS } from "../TournamentConstants/constants";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 
 export interface TournamentRoundEditProps {
   editing: boolean;
@@ -33,11 +34,12 @@ export default function TournamentRoundEdit(props: TournamentRoundEditProps) {
   const [result, setResult] = useState<string[]>([]);
   const [turnOrders, setTurnOrders] = useState<string[]>([]);
   const [immediateMatchEnd, setImmediateMatchEnd] = useState<ImmediateMatchEndScenarios | null>(null);
+  const [notes, setNotes] = useState<string>('');
   const [loading, setLoading] = useState(false);
 
   const ifChangesWereMade: boolean = useMemo(() => {
     return (props.existingRound?.deck !== deck) || (props.existingRound?.result.join() !== result.join()) || (props.existingRound.match_end_reason !== immediateMatchEnd) ||((props.existingRound?.turn_orders?.join() ?? '') !== turnOrders.join());
-  }, [props.existingRound, deck, result, immediateMatchEnd, turnOrders]);
+  }, [props.existingRound, deck, result, immediateMatchEnd, turnOrders, notes]);
 
   useEffect(() => {
     if (immediateMatchEnd === MATCH_END_REASONS.ID) {
@@ -69,6 +71,10 @@ export default function TournamentRoundEdit(props: TournamentRoundEditProps) {
     }
   }, [props.existingRound?.turn_orders, props.existingRound?.result]);
 
+  useEffect(() => {
+    setNotes(props.existingRound?.notes ?? '');
+  }, [props.existingRound?.notes]);
+
   const handleRoundEdit = useCallback(async () => {
     setLoading(true);
     const supabase = createClient();
@@ -81,7 +87,10 @@ export default function TournamentRoundEdit(props: TournamentRoundEditProps) {
       user: props.userId,
       match_end_reason: immediateMatchEnd ?? null,
       turn_orders: turnOrders,
+      notes: notes
     };
+
+    console.log(payload);
   
     try {
       let response;
@@ -157,6 +166,17 @@ export default function TournamentRoundEdit(props: TournamentRoundEditProps) {
                 {MATCH_END_REASONS.BYE}
               </ToggleGroupItem>
             </ToggleGroup>
+          </div>
+          <div className="mt-2">
+            <Label>Battle Notes</Label>
+            <Textarea
+              value={notes ?? ''}
+              onChange={(e) => {
+                setNotes(e.target.value);
+              }}
+              placeholder="What you've learned from this battle..."
+              className="min-h-[10vh] resize-vertical"
+            />
           </div>
           <div className="grid grid-cols-3 gap-2">
             <Button className='col-span-2' onClick={handleRoundEdit} type="submit" disabled={loading || (!ifChangesWereMade || ((immediateMatchEnd === null) && (!deck || (result.length === 0))))}>

@@ -235,6 +235,7 @@ export type Database = {
           tournament: string
           turn_orders: string[] | null
           user: string
+          notes?: string | null
         }
         Insert: {
           created_at?: string
@@ -246,6 +247,7 @@ export type Database = {
           tournament: string
           turn_orders?: string[] | null
           user: string
+          notes?: string | null
         }
         Update: {
           created_at?: string
@@ -257,6 +259,7 @@ export type Database = {
           tournament?: string
           turn_orders?: string[] | null
           user?: string
+          notes?: string | null
         }
         Relationships: [
           {

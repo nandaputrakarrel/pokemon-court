@@ -50,8 +50,8 @@ export const TournamentRound = (props: TournamentRoundProps) => {
       result === 'T' && 'bg-yellow-100 text-yellow-600 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-yellow-200 dark:bg-yellow-900 dark:text-yellow-300',
       result === 'L' && 'bg-red-100 text-red-600 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-red-200 dark:bg-red-900 dark:text-red-300',
     )}>
-      <span className="col-span-2 font-bold text-sm">{props.round.round_num}</span>
-      <span className="col-span-5">{props.round.match_end_reason === MATCH_END_REASONS.ID ? 
+      <span className="col-span-1 font-bold text-sm">{props.round.round_num}</span>
+      <span className="col-span-1">{props.round.match_end_reason === MATCH_END_REASONS.ID ? 
         <div className="flex items-center font-bold text-lg ml-2">
           {MATCH_END_REASONS.ID}
         </div> : props.round.match_end_reason === MATCH_END_REASONS.NO_SHOW ? (
@@ -63,7 +63,8 @@ export const TournamentRound = (props: TournamentRoundProps) => {
           {MATCH_END_REASONS.BYE}
         </div>
       ) : <Sprite name={props.round.deck} hatType={props.hatType ?? undefined} />}</span>
-      <span className="text-right font-bold tracking-wider text-md leading-4">{props.round.result.join('')}</span>
+      <span className="text-right font-bold tracking-wider text-sm leading-4">{props.round.result.join('')}</span>
+      <span className="col-span-5 text-right text-sm text-wrap leading-4">{props.round.notes}</span>
     </div>
   )
 }
