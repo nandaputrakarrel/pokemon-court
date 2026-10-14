@@ -97,7 +97,7 @@ export const TournamentContainerClient = (props: TournamentContainerClientProps)
 
   return (
     <div className="w-full flex justify-center px-4 sm:px-8">
-      <div className="w-full max-w-xl flex flex-col flex-1 gap-2">
+      <div className="w-full max-w-4xl flex flex-col flex-1 gap-2">
         <div className="flex flex-col gap-1">
           {props.user?.id === props.tournament.user && (
             <div className="flex items-center gap-2">

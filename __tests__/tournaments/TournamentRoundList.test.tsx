@@ -39,6 +39,7 @@ function createRounds(count: number): Round[] {
     round_num: idx + 1,
     tournament: 't-1',
     turn_orders: null,
+    opponent: null,
     user: 'user-1',
   }));
 }

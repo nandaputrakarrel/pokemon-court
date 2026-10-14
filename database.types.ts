@@ -230,6 +230,7 @@ export type Database = {
           deck: string | null
           id: string
           match_end_reason: string | null
+          opponent: string | null
           result: string[]
           round_num: number
           tournament: string
@@ -242,6 +243,7 @@ export type Database = {
           deck?: string | null
           id?: string
           match_end_reason?: string | null
+          opponent?: string | null
           result: string[]
           round_num: number
           tournament: string
@@ -254,6 +256,7 @@ export type Database = {
           deck?: string | null
           id?: string
           match_end_reason?: string | null
+          opponent?: string | null
           result?: string[]
           round_num?: number
           tournament?: string
@@ -425,6 +428,7 @@ export type Database = {
           deck: string | null
           id: string
           match_end_reason: string | null
+          opponent: string | null
           result: string[]
           round_num: number
           tournament: string
@@ -436,6 +440,7 @@ export type Database = {
           deck?: string | null
           id?: string
           match_end_reason?: string | null
+          opponent?: string | null
           result: string[]
           round_num: number
           tournament: string
@@ -447,6 +452,7 @@ export type Database = {
           deck?: string | null
           id?: string
           match_end_reason?: string | null
+          opponent?: string | null
           result?: string[]
           round_num?: number
           tournament?: string

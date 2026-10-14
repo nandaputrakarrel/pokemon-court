@@ -11,7 +11,7 @@ export async function fetchTournamentRounds(
   const supabase = createClient();
   let query = supabase
     .from('tournament rounds')
-    .select('id,created_at,user,tournament,round_num,result,deck,turn_orders,match_end_reason')
+    .select('id,created_at,user,tournament,round_num,result,deck,turn_orders,match_end_reason,opponent')
     .eq('user', userId)
     .order('round_num', { ascending: true });
 

@@ -134,7 +134,8 @@ export default function Index() {
               result: ['W', 'W'],
               tournament: '',
               user: 'JW',
-              turn_orders: []
+              turn_orders: [],
+              opponent: null
             },{
               id: '',
               created_at: '',
@@ -144,7 +145,8 @@ export default function Index() {
               result: ['W', 'W'],
               tournament: '',
               user: 'JW',
-              turn_orders: []
+              turn_orders: [],
+              opponent: null
             }, {
               id: '',
               created_at: '',
@@ -154,7 +156,8 @@ export default function Index() {
               result: ['W', 'W'],
               tournament: '',
               user: 'JW',
-              turn_orders: []
+              turn_orders: [],
+              opponent: null
             }]}
             updateClientRoundsOnEdit={async () => {'use server'}}
           />

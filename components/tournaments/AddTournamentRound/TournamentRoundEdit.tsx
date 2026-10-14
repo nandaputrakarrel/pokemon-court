@@ -13,6 +13,8 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { ImmediateMatchEndScenarios, MATCH_END_REASONS } from "../TournamentConstants/constants";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
+import { TranslatedText } from "@/components/general-translation/TranslatedText";
 
 export interface TournamentRoundEditProps {
   editing: boolean;
@@ -35,11 +37,12 @@ export default function TournamentRoundEdit(props: TournamentRoundEditProps) {
   const [turnOrders, setTurnOrders] = useState<string[]>([]);
   const [immediateMatchEnd, setImmediateMatchEnd] = useState<ImmediateMatchEndScenarios | null>(null);
   const [notes, setNotes] = useState<string>('');
+  const [opponent, setOpponent] = useState<string>('');
   const [loading, setLoading] = useState(false);
 
   const ifChangesWereMade: boolean = useMemo(() => {
-    return (props.existingRound?.deck !== deck) || (props.existingRound?.result.join() !== result.join()) || (props.existingRound.match_end_reason !== immediateMatchEnd) ||((props.existingRound?.turn_orders?.join() ?? '') !== turnOrders.join());
-  }, [props.existingRound, deck, result, immediateMatchEnd, turnOrders, notes]);
+    return (props.existingRound?.deck !== deck) || (props.existingRound?.result.join() !== result.join()) || (props.existingRound.match_end_reason !== immediateMatchEnd) || ((props.existingRound?.turn_orders?.join() ?? '') !== turnOrders.join()) || ((props.existingRound?.notes ?? '') !== notes) || ((props.existingRound?.opponent ?? '') !== opponent);
+  }, [props.existingRound, deck, result, immediateMatchEnd, turnOrders, notes, opponent]);
 
   useEffect(() => {
     if (immediateMatchEnd === MATCH_END_REASONS.ID) {
@@ -75,6 +78,10 @@ export default function TournamentRoundEdit(props: TournamentRoundEditProps) {
     setNotes(props.existingRound?.notes ?? '');
   }, [props.existingRound?.notes]);
 
+  useEffect(() => {
+    setOpponent(props.existingRound?.opponent ?? '');
+  }, [props.existingRound?.opponent]);
+
   const handleRoundEdit = useCallback(async () => {
     setLoading(true);
     const supabase = createClient();
@@ -87,7 +94,8 @@ export default function TournamentRoundEdit(props: TournamentRoundEditProps) {
       user: props.userId,
       match_end_reason: immediateMatchEnd ?? null,
       turn_orders: turnOrders,
-      notes: notes
+      notes: notes,
+      opponent: opponent.trim() ? opponent.trim() : null,
     };
 
     console.log(payload);
@@ -130,7 +138,7 @@ export default function TournamentRoundEdit(props: TournamentRoundEditProps) {
     } finally {
       setLoading(false);
     }
-  }, [props.tournamentId, deck, result, immediateMatchEnd, props.setEditing, turnOrders, roundsTable]);
+  }, [props.tournamentId, props.userId, props.editedRoundNumber, props.existingRound, props.updateClientRounds, props.setEditing, deck, result, immediateMatchEnd, turnOrders, notes, opponent, roundsTable]);
   
 
   if (props.editing) return (
@@ -143,6 +151,15 @@ export default function TournamentRoundEdit(props: TournamentRoundEditProps) {
           <div className="flex flex-col w-full gap-2">
             <Label>Opponent's deck</Label>
             <AddArchetype archetype={deck} setArchetype={setDeck} isDisabled={immediateMatchEnd !== null} />
+          </div>
+          <div className="flex flex-col w-full gap-2">
+            <Label><TranslatedText id="tournaments.round.opponent">Opponent</TranslatedText></Label>
+            <Input
+              value={opponent}
+              onChange={(e) => setOpponent(e.target.value)}
+              placeholder="Opponent name"
+              maxLength={80}
+            />
           </div>
           <div className="flex flex-col w-full gap-2">
             <RoundResultInput result={result} setResult={setResult} isMatchImmediatelyEnded={!!immediateMatchEnd} turnOrder={turnOrders} setTurnOrder={setTurnOrders} />

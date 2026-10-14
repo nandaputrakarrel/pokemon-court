@@ -239,5 +239,6 @@
   "tournaments.empty.description": "Du kannst vergangene, aktuelle oder kunftige Turniere hinzufugen.",
   "tournaments.header": "Turniere",
   "tournaments.newTournament": "Neues Turnier",
-  "tournaments.ptcgHeader": "PTCG-Turniere"
+  "tournaments.ptcgHeader": "PTCG-Turniere",
+  "tournaments.round.opponent": "Gegner"
 }

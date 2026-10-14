@@ -239,5 +239,6 @@
   "tournaments.empty.description": "過去、現在、未来の大会を追加できます。",
   "tournaments.header": "大会",
   "tournaments.newTournament": "新しい大会",
-  "tournaments.ptcgHeader": "PTCG大会"
+  "tournaments.ptcgHeader": "PTCG大会",
+  "tournaments.round.opponent": "対戦相手"
 }

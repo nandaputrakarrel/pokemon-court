@@ -2,6 +2,7 @@
 
 import { Database } from "@/database.types";
 import { TournamentRound } from "./TournamentRound";
+import { TranslatedText } from "@/components/general-translation/TranslatedText";
 import { useCallback, useLayoutEffect, useRef, useState, useEffect } from "react";
 
 interface TournamentRoundListProps {
@@ -114,11 +115,12 @@ export default function TournamentRoundList(props: TournamentRoundListProps) {
       className="origin-top-left"
     >
       <div ref={contentRef}>
-        <div className="grid grid-cols-8">
-          <div className="col-span-8 grid grid-cols-8 text-sm font-medium text-muted-foreground px-3 py-1">
+        <div className="grid grid-cols-12">
+          <div className="col-span-12 grid grid-cols-12 text-sm font-medium text-muted-foreground px-3 py-1">
             <span className="col-span-1">Round</span>
-            <span className="col-span-1">Deck</span>
+            <span className="col-span-2">Deck</span>
             <span className="col-span-1 text-right">Result</span>
+            <span className="col-span-3 text-right"><TranslatedText id="tournaments.round.opponent">Opponent</TranslatedText></span>
             <span className="col-span-5 text-right">Notes</span>
           </div>
 

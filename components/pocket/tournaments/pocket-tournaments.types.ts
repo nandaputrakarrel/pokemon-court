@@ -23,4 +23,5 @@ export type PocketTournamentRound = {
   deck: string | null;
   turn_orders: string[] | null;
   match_end_reason: string | null;
+  opponent: string | null;
 };

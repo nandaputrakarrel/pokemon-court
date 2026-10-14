@@ -86,6 +86,7 @@ export function TranslatedText({ id, children }: TranslatedTextProps) {
     case "tournaments.empty.cta": return <T id="tournaments.empty.cta">Click New Tournament to get started!</T>;
     case "tournaments.description": return <T id="tournaments.description">Record your TCG tournaments, rounds, and matchups</T>;
     case "tournaments.header": return <T id="tournaments.header">Tournaments</T>;
+    case "tournaments.round.opponent": return <T id="tournaments.round.opponent">Opponent</T>;
   }
 
   return <>{children}</>;
