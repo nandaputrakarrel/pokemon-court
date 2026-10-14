@@ -117,11 +117,11 @@ export default function TournamentRoundList(props: TournamentRoundListProps) {
       <div ref={contentRef}>
         <div className="grid grid-cols-12">
           <div className="col-span-12 grid grid-cols-12 text-sm font-medium text-muted-foreground px-3 py-1">
-            <span className="col-span-1">Round</span>
-            <span className="col-span-2">Deck</span>
-            <span className="col-span-1 text-right">Result</span>
-            <span className="col-span-3 text-right"><TranslatedText id="tournaments.round.opponent">Opponent</TranslatedText></span>
-            <span className="col-span-5 text-right">Notes</span>
+            <span className="col-span-1 text-left">Round</span>
+            <span className="col-span-2 text-center">Deck</span>
+            <span className="col-span-1 text-center">Result</span>
+            <span className="col-span-3 text-center"><TranslatedText id="tournaments.round.opponent">Opponent</TranslatedText></span>
+            <span className="col-span-5 text-center">Notes</span>
           </div>
 
           {rounds.map((round, idx) => (

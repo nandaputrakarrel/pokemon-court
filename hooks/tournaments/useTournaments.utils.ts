@@ -8,7 +8,7 @@ export async function fetchTournaments(userId: string | undefined, limit?: numbe
   let query = supabase
     .from('tournaments')
     .select('id,created_at,user,name,date_from,date_to,deck,decklist_id,hat_type,category,placement,format,notes')
-    .eq('user', userId)
+    // .eq('user', userId)
     .order('date_from', { ascending: false });
 
   if (limit) query = query.limit(limit);

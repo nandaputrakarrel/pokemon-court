@@ -63,9 +63,9 @@ export const TournamentRound = (props: TournamentRoundProps) => {
           {MATCH_END_REASONS.BYE}
         </div>
       ) : <Sprite name={props.round.deck} hatType={props.hatType ?? undefined} />}</span>
-      <span className="col-span-1 text-right font-bold tracking-wider text-sm leading-4">{props.round.result.join('')}</span>
-      <span className="col-span-3 text-right text-sm text-wrap leading-4">{props.round.opponent}</span>
-      <span className="col-span-5 text-right text-sm text-wrap leading-4">{props.round.notes}</span>
+      <span className="col-span-1 text-center font-bold tracking-wider text-sm leading-4">{props.round.result.join('')}</span>
+      <span className="col-span-3 text-center text-sm text-wrap leading-4">{props.round.opponent}</span>
+      <span className="col-span-5 text-left text-sm break-words leading-4">{props.round.notes}</span>
     </div>
   )
 }

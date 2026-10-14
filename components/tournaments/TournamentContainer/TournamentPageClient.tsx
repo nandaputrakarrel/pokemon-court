@@ -56,12 +56,15 @@ export function TournamentPageClient({
         .select('*')
         .eq('id', tournamentId)
         .maybeSingle();
+        console.log('data :', JSON.stringify(data))
       return (data as TournamentRow | null) ?? null;
     },
     initialTournament !== undefined
       ? { ...HISTORICAL_SWR_OPTIONS, fallbackData: initialTournament, revalidateOnMount: false }
       : HISTORICAL_SWR_OPTIONS
   );
+
+  console.log('tournament', tournament)
 
   const { data: rounds, isLoading: roundsLoading } = useSWR(
     [tables.rounds, tournamentId],
@@ -81,7 +84,7 @@ export function TournamentPageClient({
 
   useEffect(() => {
     if (!tournamentLoading && tournament === null) {
-      router.push(redirectTo);
+      // router.push(redirectTo);
     }
   }, [tournamentLoading, tournament, redirectTo, router]);
 
