@@ -63,15 +63,16 @@ export function TournamentPageClient({
       ? { ...HISTORICAL_SWR_OPTIONS, fallbackData: initialTournament, revalidateOnMount: false }
       : HISTORICAL_SWR_OPTIONS
   );
+  const tournamentUser = tournament ? tournament.user : null;
 
   const { data: userData } = useSWR(
-    [tournament.user],
+    [tournamentUser],
     async () => {
       const supabase = createClient();
       const { data } = await supabase
         .from('user data')
         .select('*')
-        .eq('id', tournament.user)
+        .eq('id', tournamentUser)
         .maybeSingle();
       return (data as UserRow | null) ?? null;
     }

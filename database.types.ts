@@ -329,8 +329,8 @@ export type Database = {
           user: string,
           notes: string | null
           "user data": {
-            live_screen_name: string
-          }
+            live_screen_name: string | null
+          } | null
         }
         Insert: {
           category?: string | null
