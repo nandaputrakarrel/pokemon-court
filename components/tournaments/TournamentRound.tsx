@@ -44,7 +44,7 @@ export const TournamentRound = (props: TournamentRoundProps) => {
 
   return (
     <div onClick={() => userHasPermissionsToEdit && props.handleEditingRoundToggle()} className={cn(
-      'col-span-12 grid grid-cols-12 items-center px-4 border-b min-h-12',
+      'col-span-12 grid grid-cols-12 items-center px-4 py-4 border-b min-h-12',
       userHasPermissionsToEdit && 'cursor-pointer',
       result === 'W' && 'bg-emerald-100 text-emerald-600 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-emerald-200 dark:bg-emerald-900 dark:text-emerald-300',
       result === 'T' && 'bg-yellow-100 text-yellow-600 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-yellow-200 dark:bg-yellow-900 dark:text-yellow-300',
